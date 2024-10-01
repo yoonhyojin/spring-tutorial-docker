@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.controller.dto.UserCreateRequestDto;
 import com.example.demo.service.User;
 import com.example.demo.service.UserServiceInterface;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -57,7 +58,7 @@ public class UserController {
 
     @PostMapping("")
     @ResponseBody
-    public User save(@RequestBody UserCreateRequestDto request) {
+    public User save(@RequestBody @Valid UserCreateRequestDto request) {
         User user = userService.save(request.getName(), request.getAge(), request.getJob(), request.getSpecialty());
         return user;
     }
