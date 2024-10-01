@@ -2,6 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.service.User;
 import com.example.demo.service.UserServiceInterface;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -14,13 +17,10 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/users")
+@RequiredArgsConstructor
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class UserController {
-    private UserServiceInterface userService;
-
-    @Autowired
-    public void setUserService(UserServiceInterface userService) {
-        this.userService = userService;
-    }
+    UserServiceInterface userService;
 
     @Autowired
     private ApplicationContext applicationContext;
