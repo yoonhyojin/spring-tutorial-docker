@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -38,9 +39,9 @@ public class UserController {
         return "/users/list";
     }
 
-    @GetMapping("/1/detail")
-    public String detailPage(Model model) {
-        User user = userService.findById(1);
+    @GetMapping("/{id}/detail")
+    public String detailPage(@PathVariable Integer id, Model model) {
+        User user = userService.findById(id);
         model.addAttribute("id", user.getId());
         model.addAttribute("name", user.getName());
         model.addAttribute("age", user.getAge());
@@ -49,10 +50,10 @@ public class UserController {
         return "/users/detail";
     }
 
-    @GetMapping("/1/data")
+    @GetMapping("/{id}/data")
     @ResponseBody
-    public User detailData() {
-        User user = userService.findById(1);
+    public User detailData(@PathVariable Integer id) {
+        User user = userService.findById(id);
         return user;
     }
 }
