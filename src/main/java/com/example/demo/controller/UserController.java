@@ -15,8 +15,13 @@ import java.util.List;
 @Controller
 @RequestMapping("/users")
 public class UserController {
-    @Autowired
     private UserServiceInterface userService;
+
+    @Autowired
+    public void setUserService(UserServiceInterface userService) {
+        this.userService = userService;
+    }
+
     @Autowired
     private ApplicationContext applicationContext;
 
