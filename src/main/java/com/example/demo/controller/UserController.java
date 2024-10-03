@@ -2,7 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.controller.dto.UserCreateRequestDto;
 import com.example.demo.service.User;
-import com.example.demo.service.UserServiceInterface;
+import com.example.demo.service.IRepository;
+import com.example.demo.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class UserController {
-    UserServiceInterface userService;
+    UserService userService;
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -28,7 +29,7 @@ public class UserController {
     @GetMapping("/bean")
     @ResponseBody
     public String bean() {
-        return applicationContext.getBean(UserServiceInterface.class).toString();
+        return applicationContext.getBean(IRepository.class).toString();
     }
 
     @GetMapping("")
