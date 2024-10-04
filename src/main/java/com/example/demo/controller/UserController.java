@@ -56,11 +56,18 @@ public class UserController {
     @GetMapping("/data")
     @ResponseBody
     public ResponseEntity<UserResponseDto> detailData(@RequestParam Integer id) {
-        UserResponseDto user = userService.findById(id);
-        return ResponseEntity
-//              .status(HttpStatusCode.valueOf(200))
-                .status(HttpStatus.OK)      // 1. HTTP Status Code
-                .body(user);                // 2. 결과 객체(User)
+        try {
+            UserResponseDto user = userService.findById(id);
+            return ResponseEntity
+//                  .status(HttpStatusCode.valueOf(200))
+                    .status(HttpStatus.OK)      // 1. HTTP Status Code
+                    .body(user);                // 2. 결과 객체(User)
+        } catch (RuntimeException e) {
+            return ResponseEntity
+//                  .status(HttpStatusCode.valueOf(404))
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(null);
+        }
     }
 
     @PostMapping("")
