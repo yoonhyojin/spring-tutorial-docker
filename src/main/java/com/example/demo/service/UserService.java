@@ -4,6 +4,7 @@ import com.example.demo.controller.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -24,7 +25,7 @@ public class UserService {
     }
 
     public UserResponseDto save(String name, Integer age, String job, String specialty) {
-        User user = userRepository.save(new User(null, name, age, job, specialty));
+        User user = userRepository.save(new User(null, name, age, job, specialty, LocalDateTime.now()));
         return UserResponseDto.from(user);
     }
 }

@@ -9,6 +9,8 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -22,6 +24,7 @@ public class UserResponseDto {
     private Integer age;
     private String job;
     private String specialty;
+    private LocalDateTime createdAt;
     private String address;
     private String postcode;
 
@@ -32,6 +35,7 @@ public class UserResponseDto {
                 entity.getAge(),
                 entity.getJob(),
                 entity.getSpecialty(),
+                entity.getCreatedAt(),
                 null,
                 null
         );

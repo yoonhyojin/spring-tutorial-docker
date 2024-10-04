@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Getter
 @AllArgsConstructor
 @ToString
@@ -15,4 +17,5 @@ public class User {
     private Integer age;
     private String job;
     private String specialty;
+    private LocalDateTime createdAt;
 }
