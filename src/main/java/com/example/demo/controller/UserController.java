@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -59,8 +62,11 @@ public class UserController {
 
     @PostMapping("")
     @ResponseBody
-    public UserResponseDto save(@RequestBody @Valid UserCreateRequestDto request) {
+    public ResponseEntity<UserResponseDto> save(@RequestBody @Valid UserCreateRequestDto request) {
         UserResponseDto user = userService.save(request.getName(), request.getAge(), request.getJob(), request.getSpecialty());
-        return user;
+        return ResponseEntity
+//              .status(HttpStatusCode.valueOf(201))
+                .status(HttpStatus.CREATED) // 1. HTTP Status Code
+                .body(user);                // 2. 결과 객체(User)
     }
 }
