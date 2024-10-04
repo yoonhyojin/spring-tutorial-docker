@@ -55,9 +55,12 @@ public class UserController {
 
     @GetMapping("/data")
     @ResponseBody
-    public UserResponseDto detailData(@RequestParam Integer id) {
+    public ResponseEntity<UserResponseDto> detailData(@RequestParam Integer id) {
         UserResponseDto user = userService.findById(id);
-        return user;
+        return ResponseEntity
+//              .status(HttpStatusCode.valueOf(200))
+                .status(HttpStatus.OK)      // 1. HTTP Status Code
+                .body(user);                // 2. 결과 객체(User)
     }
 
     @PostMapping("")
