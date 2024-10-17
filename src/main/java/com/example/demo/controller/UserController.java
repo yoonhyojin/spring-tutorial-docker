@@ -50,7 +50,7 @@ public class UserController {
         model.addAttribute("age", user.getAge());
         model.addAttribute("job", user.getJob());
         model.addAttribute("specialty", user.getSpecialty());
-        return "/users/detail";
+        return "users/detail";
     }
 
     @GetMapping("/data")
